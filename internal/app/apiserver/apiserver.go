@@ -2,7 +2,7 @@ package apiserver
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/shaolinjehzu/goAPI/store"
+	"github.com/shaolinjehzu/goAPI/internal/app/store"
 	"github.com/sirupsen/logrus"
 	"io"
 	"net/http"

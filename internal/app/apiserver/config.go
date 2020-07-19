@@ -1,6 +1,6 @@
 package apiserver
 
-import "github.com/shaolinjehzu/goAPI/store"
+import "github.com/shaolinjehzu/goAPI/internal/app/store"
 
 // Config
 type Config struct {
@@ -14,6 +14,6 @@ func NewConfig() *Config {
 	return &Config {
 		BindAddr: ":8080",
 		LogLevel: "debug",
-		Store: store.NewConfig(),
+		Store:    store.NewConfig(),
 	}
 }
