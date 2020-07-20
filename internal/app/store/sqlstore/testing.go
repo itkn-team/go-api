@@ -3,11 +3,13 @@ package sqlstore
 import (
 	"database/sql"
 	"fmt"
-	_ "github.com/lib/pq"
 	"strings"
 	"testing"
+
+	_ "github.com/lib/pq" // ...
 )
 
+// TestDB ...
 func TestDB(t *testing.T, databaseURL string) (*sql.DB, func(...string)) {
 	t.Helper()
 

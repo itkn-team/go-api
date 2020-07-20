@@ -2,34 +2,32 @@ package sqlstore
 
 import (
 	"database/sql"
+
 	"github.com/shaolinjehzu/goAPI/internal/app/store"
 )
 
-// Store struct
+// Store ...
 type Store struct {
-	db *sql.DB
-	UserRepository *UserRepository
+	db             *sql.DB
+	userRepository *UserRepository
 }
 
-// New Store
+// New ...
 func New(db *sql.DB) *Store {
 	return &Store{
 		db: db,
 	}
 }
 
-
-//User repository
+// User ...
 func (s *Store) User() store.UserRepository {
-	if s.UserRepository != nil {
-		return s.UserRepository
+	if s.userRepository != nil {
+		return s.userRepository
 	}
 
-	s.UserRepository = &UserRepository{
+	s.userRepository = &UserRepository{
 		store: s,
 	}
 
-	return s.UserRepository
-
-
+	return s.userRepository
 }

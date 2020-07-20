@@ -1,15 +1,16 @@
 package model_test
 
 import (
+	"testing"
+
 	"github.com/shaolinjehzu/goAPI/internal/app/model"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestUser_Validate(t *testing.T) {
-	testCases := []struct{
-		name string
-		u func() *model.User
+	testCases := []struct {
+		name    string
+		u       func() *model.User
 		isValid bool
 	}{
 		{
@@ -20,7 +21,7 @@ func TestUser_Validate(t *testing.T) {
 			isValid: true,
 		},
 		{
-			name: "with encrypt password",
+			name: "with encrypted password",
 			u: func() *model.User {
 				u := model.TestUser(t)
 				u.Password = ""
@@ -44,7 +45,7 @@ func TestUser_Validate(t *testing.T) {
 			name: "invalid email",
 			u: func() *model.User {
 				u := model.TestUser(t)
-				u.Email = "invalidemail"
+				u.Email = "invalid"
 
 				return u
 			},
@@ -64,7 +65,7 @@ func TestUser_Validate(t *testing.T) {
 			name: "short password",
 			u: func() *model.User {
 				u := model.TestUser(t)
-				u.Password = "123a"
+				u.Password = "short"
 
 				return u
 			},

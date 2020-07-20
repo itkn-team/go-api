@@ -2,9 +2,11 @@ package main
 
 import (
 	"flag"
-	"github.com/BurntSushi/toml"
-	"github.com/shaolinjehzu/goAPI/internal/app/apiserver"
 	"log"
+
+	"github.com/BurntSushi/toml"
+
+	"github.com/shaolinjehzu/goAPI/internal/app/apiserver"
 )
 
 var (
@@ -18,9 +20,7 @@ func init() {
 func main() {
 	flag.Parse()
 
-
 	config := apiserver.NewConfig()
-
 	_, err := toml.DecodeFile(configPath, config)
 	if err != nil {
 		log.Fatal(err)

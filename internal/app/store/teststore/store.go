@@ -5,30 +5,26 @@ import (
 	"github.com/shaolinjehzu/goAPI/internal/app/store"
 )
 
-// Store struct
+// Store ...
 type Store struct {
-	UserRepository *UserRepository
+	userRepository *UserRepository
 }
 
-// New Store
+// New ...
 func New() *Store {
-	return &Store{
-	}
+	return &Store{}
 }
 
-
-//User repository
+// User ...
 func (s *Store) User() store.UserRepository {
-	if s.UserRepository != nil {
-		return s.UserRepository
+	if s.userRepository != nil {
+		return s.userRepository
 	}
 
-	s.UserRepository = &UserRepository{
+	s.userRepository = &UserRepository{
 		store: s,
-		users: make(map[string]*model.User),
+		users: make(map[int]*model.User),
 	}
 
-	return s.UserRepository
-
-
+	return s.userRepository
 }

@@ -2,11 +2,14 @@ package apiserver
 
 import (
 	"database/sql"
-	"github.com/gorilla/sessions"
-	"github.com/shaolinjehzu/goAPI/internal/app/store/sqlstore"
 	"net/http"
+
+	"github.com/shaolinjehzu/goAPI/internal/app/store/sqlstore"
+	"github.com/gorilla/sessions"
+	_ "github.com/lib/pq" // ...
 )
 
+// Start ...
 func Start(config *Config) error {
 	db, err := newDB(config.DatabaseURL)
 	if err != nil {
@@ -14,15 +17,15 @@ func Start(config *Config) error {
 	}
 
 	defer db.Close()
-
 	store := sqlstore.New(db)
 	sessionStore := sessions.NewCookieStore([]byte(config.SessionKey))
 	srv := newServer(store, sessionStore)
+
 	return http.ListenAndServe(config.BindAddr, srv)
 }
 
-func newDB(databaseURL string) (*sql.DB, error) {
-	db, err := sql.Open("postgres", databaseURL)
+func newDB(dbURL string) (*sql.DB, error) {
+	db, err := sql.Open("postgres", dbURL)
 	if err != nil {
 		return nil, err
 	}
